@@ -1,15 +1,13 @@
 $(document).ready(function() {
-    // Initial page load
-    loadDepartments();
+    initialPageLoad();
 
-    // Bind the search form to the search event
     $('#search_form').on('submit', function(e) {
         e.preventDefault();
-        loadDepartments($('#search').val());
+        initialPageLoad($('#search').val());
     });
 });
 
-function loadDepartments(search = '') {
+function initialPageLoad(search = '') {
     $.ajax({
         url: BASE_URL +'/user-cards',
         method: 'GET',
