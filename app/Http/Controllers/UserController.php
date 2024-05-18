@@ -67,7 +67,7 @@ class UserController extends Controller
             $user->save();
             return $this->sendCreatedResponse('User added successfully');
 
-        } catch (\Throwable $th) {dd($th);
+        } catch (\Throwable $th) {
             return $this->sendErrorResponse('Something went wrong');
         }
         

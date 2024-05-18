@@ -32,7 +32,8 @@ class UserSearchController extends Controller
             });
         }
 
-        $users = $query->with(['department', 'designation'])->get();
+        $users = $query->with(['department', 'designation'])->paginate(6);
+
 
         return response()->json($users);
     }

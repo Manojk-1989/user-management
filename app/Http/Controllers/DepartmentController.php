@@ -52,7 +52,7 @@ class DepartmentController extends Controller
             $color->save();
             return $this->sendCreatedResponse('Color added successfully');
 
-        } catch (\Throwable $th) {dd($th);
+        } catch (\Throwable $th) {
             return $this->sendErrorResponse('Something went wrong');
         }
     }
