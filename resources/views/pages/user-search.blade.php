@@ -3,7 +3,6 @@
 @section('content')
     <section class="content">
         <div class="container-fluid">
-            <!-- Search field -->
             <div class="row mb-3">
                 <div class="col-md-12">
                     <form id="search_form" method="GET" action="#">
@@ -18,7 +17,6 @@
             </div>
             
             <div class="row" id="department-content">
-                <!-- Dynamic content will be appended here -->
             </div>
         </div>
     </section>
