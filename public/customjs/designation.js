@@ -29,7 +29,7 @@ $(document).ready(function() {
                     showSwal('error', 'Error!', xhr.statusText, 'OK', function() {
                         location.reload();
                     });
-                } else{ alert();
+                } else{
                     $('.text-red-500').remove();
                     var errors = xhr.responseJSON.errors; console.log(errors);
                     $.each(errors, function(field, messages) {
@@ -138,7 +138,7 @@ $(document).on('click', '.delete-designation', function() {
                     });
                 },
                 error: function(xhr) {
-                    var errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'An error occurred while deleting the company.';
+                    var errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'An error occurred while deleting the designation.';
                     Swal.fire(
                         'Error!',
                         errorMessage,
@@ -165,7 +165,7 @@ function initialPageload(params) {
                 render: function(data, type, full, meta) {
                     return '<div class="btn-group" role="group" aria-label="Company Actions">' +
                                '<button class="btn btn-primary btn-sm edit-designation" data-url="' + BASE_URL + '/edit-designation/' + full.encriptedId + '" data-id="' + full.id + '">Edit</button>' +
-                               '<button class="btn btn-danger btn-sm delete-btn delete-size" data-url="' + BASE_URL + '/delete-size/' + full.id + '" data-id="' + full.id + '">Delete</button>' +
+                               '<button class="btn btn-danger btn-sm delete-btn delete-designation" data-url="' + BASE_URL + '/delete-designation/' + full.id + '" data-id="' + full.id + '">Delete</button>' +
                            '</div>';
                 }
             }

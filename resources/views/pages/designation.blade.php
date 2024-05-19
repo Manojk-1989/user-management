@@ -14,8 +14,8 @@
                     <form id="designation_form" data-url="{{ route('designation.store') }}" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="name">Size</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Size Name">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Designation Name">
                             </div>
                         </div>
                         <div class="card-footer">

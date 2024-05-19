@@ -9,6 +9,7 @@ use App\Http\Requests\DesignationmentRequest;
 use App\Traits\ResponseTrait;
 use Yajra\DataTables\Facades\Datatables;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\User;
 
 class DesignationController extends Controller
 {
@@ -50,7 +51,7 @@ class DesignationController extends Controller
         try {
             $designation = new Designation($request->validated());
             $designation->save();
-            return $this->sendCreatedResponse('Color added successfully');
+            return $this->sendCreatedResponse('Designation added successfully');
 
         } catch (\Throwable $th) {
             return $this->sendErrorResponse('Something went wrong');
@@ -95,8 +96,18 @@ class DesignationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Designation $designation)
+    public function destroy(Designation $designation, $id)
     {
-        //
+        try {
+            if (User::where('designation_id', $id)->count() > 0) {
+                return $this->sendSuccessResponse('Designation cannot be deleted because it is associated with users.');
+            }
+
+            $designation = $designation->findOrFail($id);
+            $designation->delete();
+            return $this->sendSuccessResponse('Designation deleted successfully.');
+        } catch (\Throwable $th) {
+            return $this->sendErrorResponse('Something went wrong');
+        }
     }
 }

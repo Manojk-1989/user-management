@@ -76,9 +76,14 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(User $user, $id)
     {
-        //
+        $user = $user->with('department','designation')->findOrFail(Crypt::decrypt($id));
+        $departments = Department::get();
+        $designations = Designation::get();
+        $page = 'user';
+        $pageTitle = 'View User';
+        return view('pages.user-details', compact('user', 'page', 'pageTitle', 'departments', 'designations'));
     }
 
     /**
@@ -118,8 +123,15 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(User $user, $id)
     {
-        //
+        try {
+            $user = $user->findOrFail(Crypt::decrypt($id));
+
+            $user->delete();
+            return $this->sendSuccessResponse('User deleted successfully');
+        } catch (\Throwable $th) {
+            return $this->sendErrorResponse('Something went wrong');
+        }
     }
 }

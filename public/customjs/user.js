@@ -16,16 +16,11 @@ $(document).ready(function() {
     $('#phone_number').on('input', function() {
         var maxLength = 10;
         var currentValue = $(this).val();
-        
-        // Remove any non-numeric characters
         var numericValue = currentValue.replace(/[^0-9]/g, '');
-    
-        // If the length exceeds the maximum, trim the string
         if (numericValue.length > maxLength) {
             numericValue = numericValue.slice(0, maxLength);
         }
         
-        // Set the processed value back to the input field
         $(this).val(numericValue);
     });
     
@@ -84,5 +79,7 @@ $(document).ready(function() {
         });
     });
 });
+
+
 
 

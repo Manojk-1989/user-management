@@ -5,6 +5,8 @@ use App\Http\Controllers\UserSearchController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
+use App\Models\Department;
+use App\Models\Designation;
 
 
 
@@ -19,13 +21,13 @@ use App\Http\Controllers\DesignationController;
 |
 */
 
-// Route::get('/', function () {
-//     $colors = Color::get();
-//     $sizes = Size::get();
-//     $page = 'product';
-//     $pageTitle = 'Add Product';
-//     return view('pages.user',compact('page', 'pageTitle', 'colors', 'sizes'));
-// });
+Route::get('/', function () {
+    $departments = Department::get();
+    $designations = Designation::get();
+    $page = 'user';
+    $pageTitle = 'Add User';
+    return view('pages.user', compact('page', 'pageTitle', 'departments', 'designations'));
+});
 
 Route::get('/user', [UserController::class, 'create'])->name('user.create');
 Route::get('/user-lists', [UserController::class, 'index'])->name('user.index');

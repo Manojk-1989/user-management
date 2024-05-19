@@ -3,7 +3,7 @@ $(document).ready(function() {
     initialPagelLoad();
 });
 
-$(document).on('click', '.delete-product', function() {
+$(document).on('click', '.delete-user', function() {
     var deleteUrl = $(this).data('url');
     Swal.fire({
         title: 'Are you sure?',
@@ -31,7 +31,7 @@ $(document).on('click', '.delete-product', function() {
                     });
                 },
                 error: function(xhr) {
-                    var errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'An error occurred while deleting the company.';
+                    var errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'An error occurred while deleting the user.';
                     Swal.fire(
                         'Error!',
                         errorMessage,

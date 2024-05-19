@@ -9,6 +9,7 @@ use App\Http\Requests\DepartmentRequest;
 use App\Traits\ResponseTrait;
 use Yajra\DataTables\Facades\Datatables;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\User;
 
 class DepartmentController extends Controller
 {
@@ -48,9 +49,9 @@ class DepartmentController extends Controller
     public function store(DepartmentRequest $request)
     {
         try {
-            $color = new Department($request->validated());
-            $color->save();
-            return $this->sendCreatedResponse('Color added successfully');
+            $department = new Department($request->validated());
+            $department->save();
+            return $this->sendCreatedResponse('Department added successfully');
 
         } catch (\Throwable $th) {
             return $this->sendErrorResponse('Something went wrong');
@@ -96,8 +97,20 @@ class DepartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Department $department)
+    public function destroy(Department $department, $id)
     {
-        //
+        try {
+            if (User::where('department_id', $id)->count() > 0) {
+                return $this->sendSuccessResponse('Department cannot be deleted because it is associated with users.');
+            }
+
+            $department = $department->findOrFail($id);
+            $department->delete();
+            return $this->sendSuccessResponse('Department deleted successfully.');
+        } catch (\Throwable $th) {
+            return $this->sendErrorResponse('Something went wrong');
+        }
+            
+
     }
 }

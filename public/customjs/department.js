@@ -136,7 +136,7 @@ $(document).on('click', '.delete-department', function() {
                     });
                 },
                 error: function(xhr) {
-                    var errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'An error occurred while deleting the company.';
+                    var errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'An error occurred while deleting the department.';
                     Swal.fire(
                         'Error!',
                         errorMessage,
